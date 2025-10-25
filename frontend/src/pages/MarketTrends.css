@@ -1,0 +1,284 @@
+.trends-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.trends-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.trends-header h1 {
+  color: #2e7d32;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.trends-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.trends-filters {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-group label {
+  font-weight: bold;
+  color: #333;
+}
+
+.filter-group select {
+  padding: 8px 12px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+}
+
+.filter-group select:focus {
+  outline: none;
+  border-color: #2e7d32;
+}
+
+.trends-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.trend-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trend-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.trend-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.crop-name {
+  color: #2e7d32;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.trend-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+}
+
+.trend-text {
+  font-size: 0.9rem;
+}
+
+.price-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.current-price, .price-change {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.value {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.positive {
+  color: #d32f2f;
+}
+
+.negative {
+  color: #2e7d32;
+}
+
+.neutral {
+  color: #f57c00;
+}
+
+.market-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.location, .date {
+  display: flex;
+  align-items: center;
+}
+
+.demand-supply {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.demand, .supply {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.demand-high, .supply-low {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.demand-medium, .supply-medium {
+  color: #f57c00;
+  font-weight: bold;
+}
+
+.demand-low, .supply-high {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.factors {
+  margin-bottom: 15px;
+}
+
+.factors h4 {
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.factors ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.factors li {
+  color: #666;
+  margin-bottom: 3px;
+  font-size: 0.9rem;
+}
+
+.forecast {
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.forecast h4 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.forecast-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.short-term, .long-term {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.confidence {
+  color: #666;
+  font-style: italic;
+  margin-left: 5px;
+}
+
+.loading, .error, .no-trends {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
+}
+
+.loading {
+  color: #666;
+}
+
+.error {
+  color: #d32f2f;
+}
+
+.no-trends {
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .trends-container {
+    padding: 15px;
+  }
+
+  .trends-header h1 {
+    font-size: 2rem;
+  }
+
+  .trends-filters {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .trends-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trend-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .price-info {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .market-info {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .demand-supply {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

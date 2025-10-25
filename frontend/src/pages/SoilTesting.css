@@ -1,0 +1,327 @@
+.soil-testing-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.soil-testing-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.soil-testing-header h1 {
+  color: #2e7d32;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.soil-testing-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.soil-testing-actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.request-test-btn {
+  padding: 12px 24px;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.request-test-btn:hover {
+  background-color: #1b5e20;
+}
+
+.test-request-form {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.test-request-form h2 {
+  color: #2e7d32;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-section {
+  margin-bottom: 25px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.form-section h3 {
+  color: #2e7d32;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #2e7d32;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #1b5e20;
+}
+
+.soil-testing-filters {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-group label {
+  font-weight: bold;
+  color: #333;
+}
+
+.filter-group select {
+  padding: 8px 12px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+}
+
+.filter-group select:focus {
+  outline: none;
+  border-color: #2e7d32;
+}
+
+.tests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.test-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.test-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.test-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.test-header h3 {
+  color: #2e7d32;
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.test-info {
+  margin-bottom: 20px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.label {
+  font-weight: bold;
+  color: #333;
+}
+
+.value {
+  color: #666;
+}
+
+.test-results {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.test-results h4 {
+  color: #2e7d32;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.recommendations {
+  padding: 15px;
+  background-color: #e8f5e8;
+  border-radius: 8px;
+}
+
+.recommendations h4 {
+  color: #2e7d32;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.rec-section {
+  margin-bottom: 15px;
+}
+
+.rec-section h5 {
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.rec-section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.rec-section li {
+  color: #555;
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+
+.loading, .error, .no-tests {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
+}
+
+.loading {
+  color: #666;
+}
+
+.error {
+  color: #d32f2f;
+}
+
+.no-tests {
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .soil-testing-container {
+    padding: 15px;
+  }
+
+  .soil-testing-header h1 {
+    font-size: 2rem;
+  }
+
+  .soil-testing-filters {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .tests-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .test-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+}

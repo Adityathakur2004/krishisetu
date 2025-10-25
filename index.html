@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiSetu - Agricultural Platform</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-title {
+            flex-grow: 1;
+        }
+        .header-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .header-buttons button {
+            background-color: #45a049;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .header-buttons button:hover {
+            background-color: #3e8e41;
+        }
+        nav {
+            background-color: #333;
+            padding: 0.5rem;
+            overflow-x: auto;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-width: max-content;
+        }
+        nav li {
+            margin: 0 0.5rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+            display: block;
+            white-space: nowrap;
+        }
+        nav a:hover, nav a.active {
+            background-color: #4CAF50;
+        }
+        main {
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section {
+            display: none;
+            background-color: white;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .section.active {
+            display: block;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .card img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .features .card {
+            flex: 1 1 300px;
+            min-width: 250px;
+        }
+        .schemes-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .schemes-list .card {
+            flex: 1 1 300px;
+            min-width: 250px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin: 1rem 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .language-switcher {
+        }
+        .price-display {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .scheme-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .scheme-link:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+            nav li {
+                margin: 0.25rem;
+            }
+            main {
+                padding: 0.5rem;
+            }
+            .section {
+                padding: 0.5rem;
+            }
+            .card {
+                margin: 0.5rem 0;
+            }
+            .features, .schemes-list {
+                flex-direction: column;
+            }
+            .language-switcher {
+                text-align: left;
+                margin-top: 0.5rem;
+            }
+            header {
+                padding: 0.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.25rem;
+            }
+            nav li {
+                margin: 0.1rem;
+            }
+            nav a {
+                padding: 0.25rem;
+                font-size: 0.9rem;
+            }
+            .card {
+                padding: 0.5rem;
+            }
+            button {
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="language-switcher">
+            <label for="language">Language: </label>
+            <select id="language">
+                <option value="en">English</option>
+                <option value="hi">हिंदी</option>
+                <option value="te">తెలుగు</option>
+                <option value="ta">தமிழ்</option>
+                <option value="bn">বাংলা</option>
+                <option value="mr">मराठी</option>
+                <option value="gu">ગુજરાતી</option>
+                <option value="kn">ಕನ್ನಡ</option>
+                <option value="or">ଓଡ଼ିଆ</option>
+                <option value="pa">ਪੰਜਾਬੀ</option>
+            </select>
+        </div>
+        <div class="header-title">
+            <h1>KrishiSetu</h1>
+        </div>
+        <div class="header-buttons">
+            <button>Buyer Login (Mandatory)</button>
+            <button>Seller Signup (Optional)</button>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" data-section="home" class="active">Home</a></li>
+            <li><a href="#" data-section="prices">Live Prices</a></li>
+            <li><a href="#" data-section="disease">Disease Prediction</a></li>
+            <li><a href="#" data-section="crops">Crop Types</a></li>
+            <li><a href="#" data-section="transportation">Transportation</a></li>
+            <li><a href="#" data-section="buyers">Buyers</a></li>
+            <li><a href="#" data-section="sellers">Sellers</a></li>
+            <li><a href="#" data-section="weather">Weather</a></li>
+            <li><a href="#" data-section="vegetables">Vegetables</a></li>
+            <li><a href="#" data-section="pulses">Pulses</a></li>
+            <li><a href="#" data-section="fruits">Fruits</a></li>
+            <li><a href="#" data-section="government-schemes">Government Schemes</a></li>
+            <li><a href="#" data-section="farming-tech">Farming Technology</a></li>
+            <li><a href="#" data-section="fertilizer-pesticide">Fertilizers & Pesticides</a></li>
+            <li><a href="#" data-section="agricultural-news">Agricultural News</a></li>
+            <li><a href="#" data-section="market-trends">Market Trends</a></li>
+            <li><a href="#" data-section="farming-equipment">Farming Equipment</a></li>
+            <li><a href="#" data-section="soil-testing">Soil Testing</a></li>
+            <li><a href="#" data-section="irrigation-systems">Irrigation Systems</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="home" class="section active">
+            <h2>Welcome to KrishiSetu</h2>
+            <p>Your comprehensive agricultural platform for farmers, buyers, and sellers.</p>
+            <div class="features">
+                <div class="card">
+                    <h3>Live Prices</h3>
+                    <p>Get real-time prices for crops, vegetables, pulses, and fruits.</p>
+                </div>
+                <div class="card">
+                    <h3>Disease Prediction</h3>
+                    <p>Upload images or videos of crops to detect diseases accurately.</p>
+                </div>
+                <div class="card">
+                    <h3>Crop Information</h3>
+                    <p>Learn about different crop types with detailed information and images.</p>
+                </div>
+                <div class="card">
+                    <h3>Transportation</h3>
+                    <p>Find transportation services with GPS tracking for your agricultural needs.</p>
+                </div>
+                <div class="card">
+                    <h3>Buyer/Seller Network</h3>
+                    <p>Connect with buyers and sellers across the region.</p>
+                </div>
+                <div class="card">
+                    <h3>Weather Forecast</h3>
+                    <p>Get accurate weather forecasts to plan your farming activities.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="prices" class="section">
+            <h2>Live Prices</h2>
+            <div id="prices-list">
+                <div class="card">
+                    <h3>Wheat</h3>
+                    <p class="price-display">₹25 per kg</p>
+                    <p class="price-display">₹2,500 per quintal</p>
+                </div>
+                <div class="card">
+                    <h3>Rice</h3>
+                    <p class="price-display">₹30 per kg</p>
+                    <p class="price-display">₹3,000 per quintal</p>
+                </div>
+                <div class="card">
+                    <h3>Cotton</h3>
+                    <p class="price-display">₹50 per kg</p>
+                    <p class="price-display">₹5,000 per quintal</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="disease" class="section">
+            <h2>Crop Disease Prediction</h2>
+            <form id="disease-form">
+                <div class="form-group">
+                    <label for="disease-image">Upload Image:</label>
+                    <input type="file" id="disease-image" accept="image/*" required>
+                </div>
+                <button type="submit">Predict Disease</button>
+            </form>
+            <div id="disease-result"></div>
+        </section>
+
+        <section id="crops" class="section">
+            <h2>Crop Types</h2>
+            <div class="form-group">
+                <label for="crop-type">Filter by Type:</label>
+                <select id="crop-type">
+                    <option value="all">All</option>
+                    <option value="grain">Grain</option>
+                    <option value="cash">Cash Crop</option>
+                    <option value="fiber">Fiber Crop</option>
+                </select>
+            </div>
+            <div id="crops-list">
+                <div class="card" data-type="grain">
+                    <img src="https://via.placeholder.com/300x150?text=Wheat" alt="Wheat">
+                    <h3>Wheat</h3>
+                    <p>Grain crop, staple food.</p>
+                </div>
+                <div class="card" data-type="cash">
+                    <img src="https://via.placeholder.com/300x150?text=Sugarcane" alt="Sugarcane">
+                    <h3>Sugarcane</h3>
+                    <p>Cash crop for sugar production.</p>
+                </div>
+                <div class="card" data-type="fiber">
+                    <img src="https://via.placeholder.com/300x150?text=Cotton" alt="Cotton">
+                    <h3>Cotton</h3>
+                    <p>Fiber crop for textile industry.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="transportation" class="section">
+            <h2>Transportation Services</h2>
+            <button id="gps-btn">Get GPS Location</button>
+            <form id="transportation-form">
+                <div class="form-group">
+                    <label for="org-name">Organization Name:</label>
+                    <input type="text" id="org-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="org-address">Address:</label>
+                    <textarea id="org-address" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="org-mobile">Mobile:</label>
+                    <input type="text" id="org-mobile" required>
+                </div>
+                <div class="form-group">
+                    <label for="org-gst">GST Number:</label>
+                    <input type="text" id="org-gst">
+                </div>
+                <div class="form-group">
+                    <label for="org-email">Email:</label>
+                    <input type="email" id="org-email">
+                </div>
+                <button type="submit">Add Organization</button>
+            </form>
+            <div id="transportation-list"></div>
+        </section>
+
+        <section id="buyers" class="section">
+            <h2>Buyers</h2>
+            <form id="buyer-form">
+                <div class="form-group">
+                    <label for="buyer-fullName">Full Name:</label>
+                    <input type="text" id="buyer-fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="buyer-businessAddress">Business Address:</label>
+                    <textarea id="buyer-businessAddress" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="buyer-mobileNumber">Mobile Number:</label>
+                    <input type="text" id="buyer-mobileNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="buyer-emailId">Email ID:</label>
+                    <input type="email" id="buyer-emailId">
+                </div>
+                <div class="form-group">
+                    <label for="buyer-gstNumber">GST Number:</label>
+                    <input type="text" id="buyer-gstNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="buyer-cropsInterested">Crops Interested (comma-separated):</label>
+                    <input type="text" id="buyer-cropsInterested">
+                </div>
+                <div class="form-group">
+                    <label for="buyer-profilePhoto">Profile Photo:</label>
+                    <input type="file" id="buyer-profilePhoto" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="buyer-essentialInfo">Essential Info:</label>
+                    <textarea id="buyer-essentialInfo"></textarea>
+                </div>
+                <button type="submit">Add Buyer</button>
+            </form>
+            <div id="buyers-list"></div>
+        </section>
+
+        <section id="sellers" class="section">
+            <h2>Sellers</h2>
+            <form id="seller-form">
+                <div class="form-group">
+                    <label for="seller-fullName">Full Name:</label>
+                    <input type="text" id="seller-fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="seller-address">Address:</label>
+                    <textarea id="seller-address" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="seller-mobileNumber">Mobile Number:</label>
+                    <input type="text" id="seller-mobileNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="seller-cropType">Crop Type:</label>
+                    <select id="seller-cropType" required>
+                        <option value="Cereals">Cereals</option>
+                        <option value="Pulses">Pulses</option>
+                        <option value="Vegetables">Vegetables</option>
+                        <option value="Fruits">Fruits</option>
+                        <option value="Oilseeds">Oilseeds</option>
+                        <option value="Spices">Spices</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="seller-cropName">Crop Name:</label>
+                    <input type="text" id="seller-cropName" required>
+                </div>
+                <div class="form-group">
+                    <label for="seller-pricePerQuintal">Price per Quintal (₹):</label>
+                    <input type="number" id="seller-pricePerQuintal" required>
+                </div>
+                <div class="form-group">
+                    <label for="seller-profilePhoto">Profile Photo:</label>
+                    <input type="file" id="seller-profilePhoto" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="seller-essentialInfo">Essential Info:</label>
+                    <textarea id="seller-essentialInfo"></textarea>
+                </div>
+                <button type="submit">Add Seller</button>
+            </form>
+            <div id="sellers-list"></div>
+        </section>
+
+        <section id="weather" class="section">
+            <h2>Weather Forecast</h2>
+            <div class="form-group">
+                <label for="weather-lat">Latitude:</label>
+                <input type="text" id="weather-lat" placeholder="Enter latitude">
+            </div>
+            <div class="form-group">
+                <label for="weather-lon">Longitude:</label>
+                <input type="text" id="weather-lon" placeholder="Enter longitude">
+            </div>
+            <button id="current-location-btn">Use Current Location</button>
+            <button id="get-weather-btn">Get Weather</button>
+            <div id="weather-result"></div>
+        </section>
+
+        <section id="vegetables" class="section">
+            <h2>Vegetables</h2>
+            <div id="vegetables-list">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150?text=Tomato" alt="Tomato">
+                    <h3>Tomato</h3>
+                    <p class="price-display">₹40 per kg</p>
+                    <p class="price-display">₹4,000 per quintal</p>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150?text=Potato" alt="Potato">
+                    <h3>Potato</h3>
+                    <p class="price-display">₹20 per kg</p>
+                    <p class="price-display">₹2,000 per quintal</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pulses" class="section">
+            <h2>Pulses</h2>
+            <div id="pulses-list">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150?text=Lentils" alt="Lentils">
+                    <h3>Lentils</h3>
+                    <p class="price-display">₹80 per kg</p>
+                    <p class="price-display">₹8,000 per quintal</p>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150?text=Chickpeas" alt="Chickpeas">
+                    <h3>Chickpeas</h3>
+                    <p class="price-display">₹60 per kg</p>
+                    <p class="price-display">₹6,000 per quintal</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="fruits" class="section">
+            <h2>Fruits</h2>
+            <div id="fruits-list">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150?text=Apple" alt="Apple">
+                    <h3>Apple</h3>
+                    <p class="price-display">₹100 per kg</p>
+                    <p class="price-display">₹10,000 per quintal</p>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x150?text=Banana" alt="Banana">
+                    <h3>Banana</h3>
+                    <p class="price-display">₹50 per kg</p>
+                    <p class="price-display">₹5,000 per quintal</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="government-schemes" class="section">
+            <h2>Government Schemes</h2>
+            <p>Explore various government schemes and programs for farmers in India.</p>
+            <div class="schemes-list">
+                <div class="card">
+                    <h3>Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)</h3>
+                    <p><strong>Description:</strong> Direct income support of ₹6,000 per year to farmer families.</p>
+                    <p><strong>Eligibility:</strong> Small and marginal farmers with landholding up to 2 hectares.</p>
+                    <p><strong>Benefits:</strong> ₹2,000 quarterly installments.</p>
+                    <a href="https://pmkisan.gov.in/" target="_blank" class="scheme-link">Learn More</a>
+                </div>
+                <div class="card">
+                    <h3>Pradhan Mantri Fasal Bima Yojana (PMFBY)</h3>
+                    <p><strong>Description:</strong> Crop insurance scheme to protect farmers against crop loss.</p>
+                    <p><strong>Eligibility:</strong> All farmers growing notified crops.</p>
+                    <p><strong>Benefits:</strong> Compensation for crop loss due to natural calamities.</p>
+                    <a href="https://pmfby.gov.in/" target="_blank" class="scheme-link">Learn More</a>
+                </div>
+                <div class="card">
+                    <h3>Soil Health Card Scheme</h3>
+                    <p><strong>Description:</strong> Provides soil health cards to farmers for better crop management.</p>
+                    <p><strong>Eligibility:</strong> All farmers.</p>
+                    <p><strong>Benefits:</strong> Free soil testing and recommendations.</p>
+                    <a href="https://soilhealth.dac.gov.in/" target="_blank" class="scheme-link">Learn More</a>
+                </div>
+                <div class="card">
+                    <h3>National Agriculture Market (eNAM)</h3>
+                    <p><strong>Description:</strong> Online trading platform for agricultural commodities.</p>
+                    <p><strong>Eligibility:</strong> Farmers, traders, and buyers.</p>
+                    <p><strong>Benefits:</strong> Better price discovery and transparent trading.</p>
+                    <a href="https://enam.gov.in/" target="_blank" class="scheme-link">Learn More</a>
+                </div>
+                <div class="card">
+                    <h3>Kisan Credit Card (KCC)</h3>
+                    <p><strong>Description:</strong> Credit facility for farmers for agricultural and allied activities.</p>
+                    <p><strong>Eligibility:</strong> Farmers engaged in agriculture and allied activities.</p>
+                    <p><strong>Benefits:</strong> Short-term credit up to ₹3 lakh.</p>
+                    <a href="https://www.pmkisan.gov.in/KCCScheme.aspx" target="_blank" class="scheme-link">Learn More</a>
+                </div>
+                <div class="card">
+                    <h3>Paramparagat Krishi Vikas Yojana (PKVY)</h3>
+                    <p><strong>Description:</strong> Promotes organic farming practices.</p>
+                    <p><strong>Eligibility:</strong> Farmers interested in organic farming.</p>
+                    <p><strong>Benefits:</strong> Financial assistance for organic inputs and certification.</p>
+                    <a href="https://pgsindia-ncof.gov.in/pkvy/" target="_blank" class="scheme-link">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="farming-tech" class="section">
+            <h2>Farming Technology</h2>
+            <p>Explore modern farming technologies to improve productivity and sustainability.</p>
+            <div class="schemes-list">
+                <div class="card">
+                    <h3>Precision Farming</h3>
+                    <p><strong>Description:</strong> Uses GPS, sensors, and data analytics for site-specific crop management.</p>
+                    <p><strong>Benefits:</strong> Optimizes inputs like water, fertilizers, and pesticides, reducing costs and environmental impact.</p>
+                </div>
+                <div class="card">
+                    <h3>IoT Sensors</h3>
+                    <p><strong>Description:</strong> Internet of Things devices that monitor soil moisture, temperature, and nutrient levels.</p>
+                    <p><strong>Benefits:</strong> Real-time data for better decision-making and automated irrigation systems.</p>
+                </div>
+                <div class="card">
+                    <h3>Agricultural Drones</h3>
+                    <p><strong>Description:</strong> Unmanned aerial vehicles for crop monitoring, spraying, and mapping.</p>
+                    <p><strong>Benefits:</strong> Efficient pest control, crop health assessment, and field surveying.</p>
+                </div>
+                <div class="card">
+                    <h3>Automated Machinery</h3>
+                    <p><strong>Description:</strong> Robotic tractors and harvesters for precision agriculture.</p>
+                    <p><strong>Benefits:</strong> Reduces labor costs and increases efficiency in large-scale farming operations.</p>
+                </div>
+                <div class="card">
+                    <h3>Vertical Farming</h3>
+                    <p><strong>Description:</strong> Growing crops in stacked layers using controlled environments.</p>
+                    <p><strong>Benefits:</strong> Year-round production, reduced water usage, and urban farming possibilities.</p>
+                </div>
+                <div class="card">
+                    <h3>AI and Machine Learning</h3>
+                    <p><strong>Description:</strong> Artificial intelligence for crop disease detection and yield prediction.</p>
+                    <p><strong>Benefits:</strong> Early disease identification and optimized harvest planning.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="fertilizer-pesticide" class="section">
+            <h2>Fertilizers & Pesticides</h2>
+            <p>Find information on fertilizers and pesticides for better crop management.</p>
+            <div class="schemes-list">
+                <div class="card">
+                    <h3>Organic Fertilizers</h3>
+                    <p><strong>Description:</strong> Natural fertilizers derived from plant or animal sources.</p>
+                    <p><strong>Benefits:</strong> Improves soil health, reduces chemical dependency, and enhances crop quality.</p>
+                </div>
+                <div class="card">
+                    <h3>Chemical Fertilizers</h3>
+                    <p><strong>Description:</strong> Synthetic fertilizers with specific nutrient compositions (NPK).</p>
+                    <p><strong>Benefits:</strong> Quick nutrient availability, high yield potential, but requires careful application.</p>
+                </div>
+                <div class="card">
+                    <h3>Bio-Pesticides</h3>
+                    <p><strong>Description:</strong> Pest control agents derived from natural materials like bacteria or plants.</p>
+                    <p><strong>Benefits:</strong> Environmentally friendly, targets specific pests, and safe for beneficial insects.</p>
+                </div>
+                <div class="card">
+                    <h3>Chemical Pesticides</h3>
+                    <p><strong>Description:</strong> Synthetic chemicals for pest, weed, and disease control.</p>
+                    <p><strong>Benefits:</strong> Effective against a wide range of pests, but requires proper usage to avoid environmental harm.</p>
+                </div>
+                <div class="card">
+                    <h3>Integrated Pest Management (IPM)</h3>
+                    <p><strong>Description:</strong> Holistic approach combining biological, cultural, and chemical methods.</p>
+                    <p><strong>Benefits:</strong> Sustainable pest control, reduces pesticide resistance, and maintains ecological balance.</p>
+                </div>
+                <div class="card">
+                    <h3>Soil Amendments</h3>
+                    <p><strong>Description:</strong> Materials added to soil to improve its physical properties.</p>
+                    <p><strong>Benefits:</strong> Enhances soil structure, water retention, and nutrient availability.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="agricultural-news" class="section">
+            <h2>Agricultural News</h2>
+            <p>Stay updated with the latest fact-checked news, mandi prices, government schemes, and industrial developments in agriculture.</p>
+            <div class="schemes-list">
+                <div class="card">
+                    <h3>Mandi News - Wheat Prices Surge</h3>
+                    <p><strong>Date:</strong> [Current Date]</p>
+                    <p><strong>Details:</strong> Wheat prices in major mandis have increased by 15% due to high demand from flour mills. Farmers in Punjab and Haryana are expected to benefit from this price rise.</p>
+                    <p><strong>Source:</strong> Agricultural Market Intelligence</p>
+                    <a href="https://agmarknet.gov.in/" target="_blank" class="scheme-link">Read More</a>
+                </div>
+                <div class="card">
+                    <h3>Government Schemes - New Subsidy for Organic Farming</h3>
+                    <p><strong>Date:</strong> [Current Date]</p>
+                    <p><strong>Details:</strong> The Ministry of Agriculture has announced a new subsidy scheme for organic farming, providing up to ₹50,000 per hectare for certified organic farmers.</p>
+                    <p><strong>Source:</strong> Ministry of Agriculture & Farmers Welfare</p>
+                    <a href="https://agricoop.nic.in/" target="_blank" class="scheme-link">Read More</a>
+                </div>
+                <div class="card">
+                    <h3>Industrial News - New Tractor Manufacturing Plant</h3>
+                    <p><strong>Date:</strong> [Current Date]</p>
+                    <p><strong>Details:</strong> A leading tractor manufacturer has inaugurated a new plant in Rajasthan, expected to create 5,000 jobs and boost agricultural mechanization in the region.</p>
+                    <p><strong>Source:</strong> Industry Reports</p>
+                    <a href="https://www.business-standard.com/" target="_blank" class="scheme-link">Read More</a>
+                </div>
+                <div class="card">
+                    <h3>Live News - Monsoon Forecast Update</h3>
+                    <p><strong>Date:</strong> [Current Date]</p>
+                    <p><strong>Details:</strong> IMD predicts above-normal rainfall in most parts of India this monsoon season. Farmers are advised to prepare for timely sowing of kharif crops.</p>
+                    <p><strong>Source:</strong> India Meteorological Department</p>
+                    <a href="https://www.imd.gov.in/" target="_blank" class="scheme-link">Read More</a>
+                </div>
+                <div class="card">
+                    <h3>Fact-Checked News - GM Crops Safety</h3>
+                    <p><strong>Date:</strong> [Current Date]</p>
+                    <p><strong>Details:</strong> Recent studies confirm that genetically modified crops approved in India are safe for consumption and environment. Claims of health risks have been debunked by scientific evidence.</p>
+                    <p><strong>Source:</strong> ICAR Research</p>
+                    <a href="https://icar.org.in/" target="_blank" class="scheme-link">Read More</a>
+                </div>
+                <div class="card">
+                    <h3>Mandi News - Cotton Export Surge</h3>
+                    <p><strong>Date:</strong> [Current Date]</p>
+                    <p><strong>Details:</strong> Cotton exports from India have increased by 25% this quarter, driven by strong international demand. Gujarat and Maharashtra mandis report record sales.</p>
+                    <p><strong>Source:</strong> Export Promotion Council</p>
+                    <a href="https://texprocil.org/" target="_blank" class="scheme-link">Read More</a>
+                </div>
+                <div class="card">
+                    <h3>Government Schemes - Digital Agriculture Initiative</h3>
+                    <p><strong>Date:</strong> [Current Date]</p>
+                    <p><strong>Details:</strong> The government launches a digital platform for farmers to access real-time market information, weather forecasts, and scheme benefits through mobile app.</p>
+                    <p><strong>Source:</strong> Department of Agriculture</p>
+                    <a href="https://agricoop.nic.in/" target="_blank" class="scheme-link">Read More</a>
+                </div>
+                <div class="card">
+                    <h3>Industrial News - Bio-Pesticide Production Boost</h3>
+                    <p><strong>Date:</strong> [Current Date]</p>
+                    <p><strong>Details:</strong> Indian bio-pesticide industry sees 30% growth with new investments in sustainable pest control solutions. Focus on reducing chemical pesticide usage.</p>
+                    <p><strong>Source:</strong> Industry Analysis</p>
+                    <a href="https://www.business-standard.com/" target="_blank" class="scheme-link">Read More</a>
+                </div>
+                <div class="card">
+                    <h3>Live News - Crop Disease Outbreak Alert</h3>
+                    <p><strong>Date:</strong> [Current Date]</p>
+                    <p><strong>Details:</strong> Early warning issued for potential fungal disease outbreak in paddy fields due to humid weather conditions. Farmers advised to take preventive measures.</p>
+                    <p><strong>Source:</strong> Agricultural Extension Services</p>
+                    <a href="https://icar.org.in/" target="_blank" class="scheme-link">Read More</a>
+                </div>
+                <div class="card">
+                    <h3>Fact-Checked News - Climate Change Impact on Agriculture</h3>
+                    <p><strong>Date:</strong> [Current Date]</p>
+                    <p><strong>Details:</strong> Verified reports show that climate change has led to 10-20% yield reduction in major crops. Adaptation strategies like drought-resistant varieties are recommended.</p>
+                    <p><strong>Source:</strong> IPCC & ICAR Joint Study</p>
+                    <a href="https://www.ipcc.ch/" target="_blank" class="scheme-link">Read More</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="market-trends" class="section">
+            <h2>Market Trends</h2>
+            <p>Analyze market demand and supply dynamics to make informed decisions. Stay updated with live market activities for better farming outcomes.</p>
+            <div class="schemes-list">
+                <div class="card">
+                    <h3>Market Demand Analysis - Wheat</h3>
+                    <p><strong>Current Demand:</strong> High demand from flour mills and export markets. Expected to rise by 20% in the next quarter.</p>
+                    <p><strong>Supply Status:</strong> Adequate supply from Punjab and Haryana, but quality concerns due to recent rains.</p>
+                    <p><strong>Farmer Benefit:</strong> Plan sowing to match peak demand periods for maximum profits.</p>
+                    <p><strong>Live Activity:</strong> Mandi arrivals increased by 15% this week.</p>
+                    <a href="https://agmarknet.gov.in/" target="_blank" class="scheme-link">View Live Prices</a>
+                </div>
+                <div class="card">
+                    <h3>Supply Chain Insights - Rice</h3>
+                    <p><strong>Demand Trends:</strong> Steady domestic consumption with growing export opportunities to Southeast Asia.</p>
+                    <p><strong>Supply Chain:</strong> Efficient from paddy fields to mills, but transportation bottlenecks in remote areas.</p>
+                    <p><strong>Farmer Benefit:</strong> Focus on quality varieties to access premium markets and higher MSP.</p>
+                    <p><strong>Live Activity:</strong> Processing mills operating at 80% capacity with export orders surging.</p>
+                    <a href="https://www.business-standard.com/" target="_blank" class="scheme-link">Read Market Report</a>
+                </div>
+                <div class="card">
+                    <h3>Live Market Activities - Cotton</h3>
+                    <p><strong>Demand Surge:</strong> Textile industry driving 25% increase in cotton procurement.</p>
+                    <p><strong>Supply Dynamics:</strong> Gujarat and Maharashtra leading producers, with fair weather boosting yields.</p>
+                    <p><strong>Farmer Benefit:</strong> Monitor ginning mill schedules to avoid post-harvest losses.</p>
+                    <p><strong>Live Activity:</strong> Spot trading active in major mandis with prices fluctuating by ₹200-300 per quintal daily.</p>
+                    <a href="https://texprocil.org/" target="_blank" class="scheme-link">Check Cotton Market</a>
+                </div>
+                <div class="card">
+                    <h3>Price Trends Analysis - Pulses</h3>
+                    <p><strong>Demand Pattern:</strong> Lentils and chickpeas seeing seasonal demand spike during festivals.</p>
+                    <p><strong>Supply Forecast:</strong> Good monsoon likely to increase acreage and stabilize prices.</p>
+                    <p><strong>Farmer Benefit:</strong> Diversify into high-value pulses for better risk management.</p>
+                    <p><strong>Live Activity:</strong> Import restrictions causing domestic price volatility; monitor weekly.</p>
+                    <a href="https://agricoop.nic.in/" target="_blank" class="scheme-link">Analyze Trends</a>
+                </div>
+                <div class="card">
+                    <h3>Market Demand - Fruits & Vegetables</h3>
+                    <p><strong>Demand Drivers:</strong> Urban consumption and export markets creating year-round opportunities.</p>
+                    <p><strong>Supply Challenges:</strong> Perishable nature requires cold chain investments.</p>
+                    <p><strong>Farmer Benefit:</strong> Adopt contract farming with retailers for guaranteed prices.</p>
+                    <p><strong>Live Activity:</strong> Wholesale markets seeing 30% increase in tomato arrivals post-rains.</p>
+                    <a href="https://enam.gov.in/" target="_blank" class="scheme-link">Explore eNAM Platform</a>
+                </div>
+                <div class="card">
+                    <h3>Supply & Demand Balance - Oilseeds</h3>
+                    <p><strong>Demand Outlook:</strong> Growing edible oil industry with import competition.</p>
+                    <p><strong>Supply Position:</strong> Mustard and soybean crops showing good progress in Rajasthan and MP.</p>
+                    <p><strong>Farmer Benefit:</strong> Invest in storage facilities to wait for better prices during lean seasons.</p>
+                    <p><strong>Live Activity:</strong> Crushing mills negotiating long-term contracts with farmers.</p>
+                    <a href="https://www.business-standard.com/" target="_blank" class="scheme-link">Market Intelligence</a>
+                </div>
+                <div class="card">
+                    <h3>Live Market Pulse - Spices</h3>
+                    <p><strong>Demand Trends:</strong> International markets driving premium for organic and fair-trade spices.</p>
+                    <p><strong>Supply Network:</strong> Kerala and Karnataka leading producers with established export channels.</p>
+                    <p><strong>Farmer Benefit:</strong> Join cooperatives for better bargaining power and quality certification.</p>
+                    <p><strong>Live Activity:</strong> Pepper prices up 15% due to global shortage; turmeric exports booming.</p>
+                    <a href="https://www.spicesboard.in/" target="_blank" class="scheme-link">Spice Market Updates</a>
+                </div>
+                <div class="card">
+                    <h3>Market Intelligence - Sugar Cane</h3>
+                    <p><strong>Demand Analysis:</strong> Ethanol blending policy creating additional demand beyond sugar.</p>
+                    <p><strong>Supply Forecast:</strong> UP and Maharashtra mills operating at full capacity.</p>
+                    <p><strong>Farmer Benefit:</strong> Monitor FRP announcements and choose varieties with high sucrose content.</p>
+                    <p><strong>Live Activity:</strong> Sugar prices stable at ₹35/kg with mills offering advance payments.</p>
+                    <a href="https://www.ishree.gov.in/" target="_blank" class="scheme-link">Sugar Market Data</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="farming-equipment" class="section">
+            <h2>Farming Equipment</h2>
+            <p>Discover essential farming equipment for efficient crop production. We promote eco-friendly farming practices by highlighting sustainable and environmentally conscious machinery that reduces carbon footprint and supports soil health.</p>
+            <div class="schemes-list">
+                <div class="card">
+                    <h3>Tractors</h3>
+                    <p><strong>Description:</strong> Versatile vehicles used for plowing, tilling, and transporting. Essential for large-scale farming operations.</p>
+                    <p><strong>Eco-Friendly Options:</strong> Electric or solar-powered tractors that reduce fuel emissions and noise pollution.</p>
+                    <p><strong>Benefits:</strong> Increases productivity, reduces manual labor, and enables timely operations for better crop yields.</p>
+                    <a href="https://www.mahindra.com/" target="_blank" class="scheme-link">Explore Tractor Models</a>
+                </div>
+                <div class="card">
+                    <h3>Plows and Tillers</h3>
+                    <p><strong>Description:</strong> Equipment for breaking up soil and preparing seedbeds. Includes moldboard plows, disc harrows, and rotary tillers.</p>
+                    <p><strong>Eco-Friendly Options:</strong> Conservation tillage tools that minimize soil disturbance and preserve organic matter.</p>
+                    <p><strong>Benefits:</strong> Improves soil aeration and structure, essential for root development and water retention.</p>
+                    <a href="https://www.john-deere.com/" target="_blank" class="scheme-link">Learn About Tillage Equipment</a>
+                </div>
+                <div class="card">
+                    <h3>Seeders and Planters</h3>
+                    <p><strong>Description:</strong> Machines for precise seed placement, including broadcast seeders and precision planters.</p>
+                    <p><strong>Eco-Friendly Options:</strong> Organic seeders that support no-till farming and reduce chemical inputs.</p>
+                    <p><strong>Benefits:</strong> Ensures uniform crop stands, reduces seed waste, and promotes sustainable planting practices.</p>
+                    <a href="https://www.agco.com/" target="_blank" class="scheme-link">View Seeding Technology</a>
+                </div>
+                <div class="card">
+                    <h3>Harvesters and Combines</h3>
+                    <p><strong>Description:</strong> Equipment for cutting, threshing, and separating crops like wheat, rice, and maize.</p>
+                    <p><strong>Eco-Friendly Options:</strong> Energy-efficient models with reduced fuel consumption and electric hybrids.</p>
+                    <p><strong>Benefits:</strong> Speeds up harvest, minimizes post-harvest losses, and enables large-scale operations.</p>
+                    <a href="https://www.newholland.com/" target="_blank" class="scheme-link">Discover Harvesting Solutions</a>
+                </div>
+                <div class="card">
+                    <h3>Sprayers and Pesticide Applicators</h3>
+                    <p><strong>Description:</strong> Devices for applying fertilizers, pesticides, and herbicides to crops.</p>
+                    <p><strong>Eco-Friendly Options:</strong> Precision sprayers with GPS-guided systems to minimize chemical drift and promote integrated pest management.</p>
+                    <p><strong>Benefits:</strong> Targeted application reduces environmental impact and improves crop protection efficiency.</p>
+                    <a href="https://www.basf.com/" target="_blank" class="scheme-link">Sustainable Spraying Tech</a>
+                </div>
+                <div class="card">
+                    <h3>Irrigation Systems</h3>
+                    <p><strong>Description:</strong> Equipment for efficient water delivery, including drip and sprinkler systems.</p>
+                    <p><strong>Eco-Friendly Options:</strong> Solar-powered pumps and smart irrigation controllers that conserve water and energy.</p>
+                    <p><strong>Benefits:</strong> Optimizes water usage, reduces evaporation losses, and supports drought-resistant farming.</p>
+                    <a href="https://www.netafim.com/" target="_blank" class="scheme-link">Eco-Irrigation Solutions</a>
+                </div>
+                <div class="card">
+                    <h3>Soil Testing Kits</h3>
+                    <p><strong>Description:</strong> Portable tools for on-site soil analysis to determine pH, nutrient levels, and organic content.</p>
+                    <p><strong>Eco-Friendly Options:</strong> Digital sensors that provide real-time data without chemical reagents.</p>
+                    <p><strong>Benefits:</strong> Enables precision farming, reduces overuse of fertilizers, and promotes soil health.</p>
+                    <a href="https://www.soilhealth.dac.gov.in/" target="_blank" class="scheme-link">Soil Testing Resources</a>
+                </div>
+                <div class="card">
+                    <h3>Organic Farming Tools</h3>
+                    <p><strong>Description:</strong> Hand tools and small machinery for organic cultivation, including hoes, cultivators, and weeders.</p>
+                    <p><strong>Eco-Friendly Options:</strong> Biodegradable and manually operated tools that avoid fossil fuel dependency.</p>
+                    <p><strong>Benefits:</strong> Supports chemical-free farming, enhances biodiversity, and improves long-term soil fertility.</p>
+                    <a href="https://www.fibl.org/" target="_blank" class="scheme-link">Organic Farming Tools</a>
+                </div>
+                <div class="card">
+                    <h3>Solar-Powered Equipment</h3>
+                    <p><strong>Description:</strong> Renewable energy-powered machinery including solar pumps, threshers, and processing units.</p>
+                    <p><strong>Eco-Friendly Options:</strong> Off-grid solar systems that eliminate reliance on diesel generators.</p>
+                    <p><strong>Benefits:</strong> Reduces carbon emissions, lowers operational costs, and provides energy independence for farmers.</p>
+                    <a href="https://www.undp.org/" target="_blank" class="scheme-link">Solar Farming Initiatives</a>
+                </div>
+                <div class="card">
+                    <h3>Precision Agriculture Tools</h3>
+                    <p><strong>Description:</strong> GPS-guided implements and sensors for variable rate application of inputs.</p>
+                    <p><strong>Eco-Friendly Options:</strong> AI-integrated systems that optimize resource use and minimize environmental impact.</p>
+                    <p><strong>Benefits:</strong> Increases efficiency, reduces waste, and supports sustainable farming practices.</p>
+                    <a href="https://www.climate-smart-agriculture.org/" target="_blank" class="scheme-link">Precision Ag Tech</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="soil-testing" class="section">
+            <h2>Soil Testing</h2>
+            <p>Get accurate soil testing services to analyze soil health, nutrient levels, pH, and more. Proper soil testing helps in making informed decisions for better crop yields and sustainable farming.</p>
+            <div class="schemes-list">
+                <div class="card">
+                    <h3>Basic Soil Test</h3>
+                    <p><strong>Description:</strong> Tests for pH, organic matter, and major nutrients (N, P, K).</p>
+                    <p><strong>Cost:</strong> ₹500 per sample</p>
+                    <p><strong>Turnaround Time:</strong> 7-10 days</p>
+                    <a href="https://www.soilhealth.dac.gov.in/" target="_blank" class="scheme-link">Book Test</a>
+                </div>
+                <div class="card">
+                    <h3>Comprehensive Soil Analysis</h3>
+                    <p><strong>Description:</strong> Includes micronutrients, heavy metals, and soil texture analysis.</p>
+                    <p><strong>Cost:</strong> ₹1,500 per sample</p>
+                    <p><strong>Turnaround Time:</strong> 14-21 days</p>
+                    <a href="https://www.soilhealth.dac.gov.in/" target="_blank" class="scheme-link">Book Test</a>
+                </div>
+                <div class="card">
+                    <h3>On-Site Soil Testing</h3>
+                    <p><strong>Description:</strong> Mobile lab services for on-field soil analysis with instant results.</p>
+                    <p><strong>Cost:</strong> ₹800 per visit</p>
+                    <p><strong>Turnaround Time:</strong> Instant</p>
+                    <a href="https://www.soilhealth.dac.gov.in/" target="_blank" class="scheme-link">Schedule Visit</a>
+                </div>
+                <div class="card">
+                    <h3>Soil Health Card</h3>
+                    <p><strong>Description:</strong> Government-sponsored soil health card scheme for farmers.</p>
+                    <p><strong>Eligibility:</strong> All farmers</p>
+                    <p><strong>Benefits:</strong> Free soil testing and recommendations</p>
+                    <a href="https://soilhealth.dac.gov.in/" target="_blank" class="scheme-link">Apply Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="irrigation-systems" class="section">
+            <h2>Irrigation Systems</h2>
+            <p>Explore efficient irrigation systems to optimize water usage and improve crop productivity. From traditional methods to modern drip and sprinkler systems.</p>
+            <div class="schemes-list">
+                <div class="card">
+                    <h3>Drip Irrigation</h3>
+                    <p><strong>Description:</strong> Delivers water directly to plant roots, minimizing evaporation and water waste.</p>
+                    <p><strong>Benefits:</strong> Up to 50% water savings, increased yields, and reduced weed growth.</p>
+                    <a href="https://www.netafim.com/" target="_blank" class="scheme-link">Learn More</a>
+                </div>
+                <div class="card">
+                    <h3>Sprinkler Irrigation</h3>
+                    <p><strong>Description:</strong> Simulates rainfall by spraying water over crops through nozzles.</p>
+                    <p><strong>Benefits:</strong> Suitable for various crops, uniform water distribution, and easy automation.</p>
+                    <a href="https://www.rainbird.com/" target="_blank" class="scheme-link">Explore Options</a>
+                </div>
+                <div class="card">
+                    <h3>Center Pivot Irrigation</h3>
+                    <p><strong>Description:</strong> Large-scale system with rotating sprinklers on wheeled towers.</p>
+                    <p><strong>Benefits:</strong> High efficiency for large fields, reduced labor, and precise water application.</p>
+                    <a href="https://www.valmont.com/" target="_blank" class="scheme-link">View Systems</a>
+                </div>
+                <div class="card">
+                    <h3>Solar-Powered Pumps</h3>
+                    <p><strong>Description:</strong> Renewable energy-powered pumps for sustainable irrigation.</p>
+                    <p><strong>Benefits:</strong> Low operational costs, eco-friendly, and energy independence.</p>
+                    <a href="https://www.undp.org/" target="_blank" class="scheme-link">Solar Solutions</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Translations object
+        const translations = {
+            en: {
+                title: "KrishiSetu",
+                welcome: "Welcome to KrishiSetu",
+                welcomeDesc: "Your comprehensive agricultural platform for farmers, buyers, and sellers.",
+                livePrices: "Live Prices",
+                diseasePrediction: "Disease Prediction",
+                cropTypes: "Crop Types",
+                transportation: "Transportation",
+                buyers: "Buyers",
+                sellers: "Sellers",
+                weather: "Weather",
+                vegetables: "Vegetables",
+                pulses: "Pulses",
+                fruits: "Fruits",
+                governmentSchemes: "Government Schemes",
+                farmingTech: "Farming Technology",
+                fertilizerPesticide: "Fertilizers & Pesticides",
+                agriculturalNews: "Agricultural News",
+                marketTrends: "Market Trends",
+                farmingEquipment: "Farming Equipment",
+                soilTesting: "Soil Testing",
+                irrigationSystems: "Irrigation Systems",
+                buyerLogin: "Buyer Login (Mandatory)",
+                sellerSignup: "Seller Signup (Optional)",
+                languageLabel: "Language: ",
+                home: "Home",
+                prices: "Live Prices",
+                disease: "Disease Prediction",
+                crops: "Crop Types",
+                transportation: "Transportation",
+                buyers: "Buyers",
+                sellers: "Sellers",
+                weather: "Weather Forecast",
+                vegetables: "Vegetables",
+                pulses: "Pulses",
+                fruits: "Fruits",
+                governmentSchemes: "Government Schemes",
+                farmingTech: "Farming Technology",
+                fertilizerPesticide: "Fertilizers & Pesticides",
+                agriculturalNews: "Agricultural News",
+                marketTrends: "Market Trends",
+                farmingEquipment: "Farming Equipment",
+                soilTesting: "Soil Testing",
+                irrigationSystems: "Irrigation Systems",
+                // Add more translations as needed for all text
+            },
+            hi: {
+                title: "कृषि सेतु",
+                welcome: "कृषि सेतु में आपका स्वागत है",
+                welcomeDesc: "किसानों, खरीदारों और विक्रेताओं के लिए आपका व्यापक कृषि प्लेटफॉर्म।",
+                livePrices: "लाइव कीमतें",
+                diseasePrediction: "रोग भविष्यवाणी",
+                cropTypes: "फसल प्रकार",
+                transportation: "परिवहन",
+                buyers: "खरीदार",
+                sellers: "विक्रेता",
+                weather: "मौसम",
+                vegetables: "सब्जियां",
+                pulses: "दालें",
+                fruits: "फल",
+                governmentSchemes: "सरकारी योजनाएं",
+                farmingTech: "कृषि तकनीक",
+                fertilizerPesticide: "उर्वरक और कीटनाशक",
+                agriculturalNews: "कृषि समाचार",
+                marketTrends: "बाजार प्रवृत्तियां",
+                farmingEquipment: "कृषि उपकरण",
+                soilTesting: "मिट्टी परीक्षण",
+                irrigationSystems: "सिंचाई प्रणाली",
+                buyerLogin: "खरीदार लॉगिन (अनिवार्य)",
+                sellerSignup: "विक्रेता साइनअप (वैकल्पिक)",
+                languageLabel: "भाषा: ",
+                home: "घर",
+                prices: "लाइव कीमतें",
+                disease: "रोग भविष्यवाणी",
+                crops: "फसल प्रकार",
+                transportation: "परिवहन",
+                buyers: "खरीदार",
+                sellers: "विक्रेता",
+                weather: "मौसम पूर्वानुमान",
+                vegetables: "सब्जियां",
+                pulses: "दालें",
+                fruits: "फल",
+                governmentSchemes: "सरकारी योजनाएं",
+                farmingTech: "कृषि तकनीक",
+                fertilizerPesticide: "उर्वरक और कीटनाशक",
+                agriculturalNews: "कृषि समाचार",
+                marketTrends: "बाजार प्रवृत्तियां",
+                farmingEquipment: "कृषि उपकरण",
+                soilTesting: "मिट्टी परीक्षण",
+                irrigationSystems: "सिंचाई प्रणाली",
+                // Add more for Hindi
+            },
+            te: {
+                title: "కృషి సేతు",
+                welcome: "కృషి సేతుకు స్వాగతం",
+                welcomeDesc: "రైతులు, కొనుగోలుదారులు మరియు విక్రేతల కోసం మీ సమగ్ర వ్యవసాయ ప్లాట్‌ఫారమ్.",
+                livePrices: "ప్రత్యక్ష ధరలు",
+                diseasePrediction: "వ్యాధి అంచనా",
+                cropTypes: "పంట రకాలు",
+                transportation: "రవాణా",
+                buyers: "కొనుగోలుదారులు",
+                sellers: "విక్రేతలు",
+                weather: "వాతావరణం",
+                vegetables: "కూరగాయలు",
+                pulses: "పప్పులు",
+                fruits: "పండ్లు",
+                governmentSchemes: "ప్రభుత్వ పథకాలు",
+                farmingTech: "వ్యవసాయ సాంకేతికత",
+                fertilizerPesticide: "ఎరువులు మరియు పురుగుల మందులు",
+                agriculturalNews: "వ్యవసాయ వార్తలు",
+                marketTrends: "మార్కెట్ ట్రెండ్‌లు",
+                farmingEquipment: "వ్యవసాయ పరికరాలు",
+                soilTesting: "మట్టి పరీక్ష",
+                irrigationSystems: "నీటిపారుదల వ్యవస్థలు",
+                buyerLogin: "కొనుగోలుదారు లాగిన్ (తప్పనిసరి)",
+                sellerSignup: "విక్రేత సైన్‌అప్ (ఐచ్ఛికం)",
+                languageLabel: "భాష: ",
+                home: "హోమ్",
+                prices: "ప్రత్యక్ష ధరలు",
+                disease: "వ్యాధి అంచనా",
+                crops: "పంట రకాలు",
+                transportation: "రవాణా",
+                buyers: "కొనుగోలుదారులు",
+                sellers: "విక్రేతలు",
+                weather: "వాతావరణ అంచనా",
+                vegetables: "కూరగాయలు",
+                pulses: "పప్పులు",
+                fruits: "పండ్లు",
+                governmentSchemes: "ప్రభుత్వ పథకాలు",
+                farmingTech: "వ్యవసాయ సాంకేతికత",
+                fertilizerPesticide: "ఎరువులు మరియు పురుగుల మందులు",
+                agriculturalNews: "వ్యవసాయ వార్తలు",
+                marketTrends: "మార్కెట్ ట్రెండ్‌లు",
+                farmingEquipment: "వ్యవసాయ పరికరాలు",
+                soilTesting: "మట్టి పరీక్ష",
+                irrigationSystems: "నీటిపారుదల వ్యవస్థలు",
+                // Add more for Telugu
+            },
+            ta: {
+                title: "கிருஷி சேது",
+                welcome: "கிருஷி சேதுவுக்கு வரவேற்கிறோம்",
+                welcomeDesc: "விவசாயிகள், வாங்குபவர்கள் மற்றும் விற்பவர்களுக்கான உங்கள் விரிவான விவசாய தளம்.",
+                livePrices: "நேரடி விலைகள்",
+                diseasePrediction: "நோய் கணிப்பு",
+                cropTypes: "பயிர் வகைகள்",
+                transportation: "போக்குவரத்து",
+                buyers: "வாங்குபவர்கள்",
+                sellers: "விற்பவர்கள்",
+                weather: "வானிலை",
+                vegetables: "காய்கறிகள்",
+                pulses: "பருப்புகள்",
+                fruits: "பழங்கள்",
+                governmentSchemes: "அரசு திட்டங்கள்",
+                farmingTech: "விவசாய தொழில்நுட்பம்",
+                fertilizerPesticide: "உரங்கள் மற்றும் பூச்சிக்கொல்லிகள்",
+                agriculturalNews: "விவசாய செய்திகள்",
+                marketTrends: "சந்தை போக்குகள்",
+                farmingEquipment: "விவசாய உபகரணங்கள்",
+                soilTesting: "மண் சோதனை",
+                irrigationSystems: "நீர்ப்பாசன அமைப்புகள்",
+                buyerLogin: "வாங்குபவர் உள்நுழைவு (கட்டாயம்)",
+                sellerSignup: "விற்பவர் பதிவு (விருப்பமானது)",
+                languageLabel: "மொழி: ",
+                home: "முகப்பு",
+                prices: "நேரடி விலைகள்",
+                disease: "நோய் கணிப்பு",
+                crops: "பயிர் வகைகள்",
+                transportation: "போக்குவரத்து",
+                buyers: "வாங்குபவர்கள்",
+                sellers: "விற்பவர்கள்",
+                weather: "வானிலை முன்னறிவிப்பு",
+                vegetables: "காய்கறிகள்",
+                pulses: "பருப்புகள்",
+                fruits: "பழங்கள்",
+                governmentSchemes: "அரசு திட்டங்கள்",
+                farmingTech: "விவசாய தொழில்நுட்பம்",
+                fertilizerPesticide: "உரங்கள் மற்றும் பூச்சிக்கொல்லிகள்",
+                agriculturalNews: "விவசாய செய்திகள்",
+                marketTrends: "சந்தை போக்குகள்",
+                farmingEquipment: "விவசாய உபகரணங்கள்",
+                soilTesting: "மண் சோதனை",
+                irrigationSystems: "நீர்ப்பாசன அமைப்புகள்",
+                // Add more for Tamil
+            },
+            bn: {
+                title: "কৃষি সেতু",
+                welcome: "কৃষি সেতুতে স্বাগতম",
+                welcomeDesc: "কৃষক, ক্রেতা এবং বিক্রেতাদের জন্য আপনার ব্যাপক কৃষি প্ল্যাটফর্ম।",
+                livePrices: "লাইভ মূল্য",
+                diseasePrediction: "রোগ পূর্বাভাস",
+                cropTypes: "ফসলের ধরন",
+                transportation: "পরিবহন",
+                buyers: "ক্রেতা",
+                sellers: "বিক্রেতা",
+                weather: "আবহাওয়া",
+                vegetables: "সবজি",
+                pulses: "ডাল",
+                fruits: "ফল",
+                governmentSchemes: "সরকারি প্রকল্প",
+                farmingTech: "কৃষি প্রযুক্তি",
+                fertilizerPesticide: "সার এবং কীটনাশক",
+                agriculturalNews: "কৃষি সংবাদ",
+                marketTrends: "বাজার প্রবণতা",
+                farmingEquipment: "কৃষি সরঞ্জাম",
+                soilTesting: "মাটি পরীক্ষা",
+                irrigationSystems: "সেচ ব্যবস্থা",
+                buyerLogin: "ক্রেতা লগইন (বাধ্যতামূলক)",
+                sellerSignup: "বিক্রেতা সাইনআপ (ঐচ্ছিক)",
+                languageLabel: "ভাষা: ",
+                home: "হোম",
+                prices: "লাইভ মূল্য",
+                disease: "রোগ পূর্বাভাস",
+                crops: "ফসলের ধরন",
+                transportation: "পরিবহন",
+                buyers: "ক্রেতা",
+                sellers: "বিক্রেতা",
+                weather: "আবহাওয়া পূর্বাভাস",
+                vegetables: "সবজি",
+                pulses: "ডাল",
+                fruits: "ফল",
+                governmentSchemes: "সরকারি প্রকল্প",
+                farmingTech: "কৃষি প্রযুক্তি",
+                fertilizerPesticide: "সার এবং কীটনাশক",
+                agriculturalNews: "কৃষি সংবাদ",
+                marketTrends: "বাজার প্রবণতা",
+                farmingEquipment: "কৃষি সরঞ্জাম",
+                soilTesting: "মাটি পরীক্ষা",
+                irrigationSystems: "সেচ ব্যবস্থা",
+                // Add more for Bengali
+            },
+            mr: {
+                title: "कृषी सेतू",
+                welcome: "कृषी सेतूमध्ये आपले स्वागत",
+                welcomeDesc: "शेतकरी, खरेदीदार आणि विक्रेते यांच्यासाठी तुमचा सर्वसमावेशक कृषी प्लॅटफॉर्म.",
+                livePrices: "लाइव्ह किंमती",
+                diseasePrediction: "रोग अंदाज",
+                cropTypes: "पिकांचे प्रकार",
+                transportation: "वाहतूक",
+                buyers: "खरेदीदार",
+                sellers: "विक्रेते",
+                weather: "हवामान",
+                vegetables: "भाजी",
+                pulses: "डाळी",
+                fruits: "फळे",
+                governmentSchemes: "सरकारी योजना",
+                farmingTech: "कृषी तंत्रज्ञान",
+                fertilizerPesticide: "खते आणि कीटकनाशके",
+                agriculturalNews: "कृषी बातम्या",
+                marketTrends: "बाजार ट्रेंड",
+                farmingEquipment: "कृषी उपकरणे",
+                soilTesting: "माती चाचणी",
+                irrigationSystems: "सिंचन प्रणाली",
+                buyerLogin: "खरेदीदार लॉगिन (अनिवार्य)",
+                sellerSignup: "विक्रेता साइनअप (पर्यायी)",
+                languageLabel: "भाषा: ",
+                home: "होम",
+                prices: "लाइव्ह किंमती",
+                disease: "रोग अंदाज",
+                crops: "पिकांचे प्रकार",
+                transportation: "वाहतूक",
+                buyers: "खरेदीदार",
+                sellers: "विक्रेते",
+                weather: "हवामान अंदाज",
+                vegetables: "भाजी",
+                pulses: "डाळी",
+                fruits: "फळे",
+                governmentSchemes: "सरकारी योजना",
+                farmingTech: "कृषी तंत्रज्ञान",
+                fertilizerPesticide: "खते आणि कीटकनाशके",
+                agriculturalNews: "कृषी बातम्या",
+                marketTrends: "बाजार ट्रेंड",
+                farmingEquipment: "कृषी उपकरणे",
+                soilTesting: "माती चाचणी",
+                irrigationSystems: "सिंचन प्रणाली",
+                // Add more for Marathi
+            },
+            gu: {
+                title: "કૃષિ સેતુ",
+                welcome: "કૃષિ સેતુમાં આપનું સ્વાગત છે",
+                welcomeDesc: "ખેડૂતો, ખરીદદારો અને વેચાણકારો માટે તમારો વ્યાપક કૃષિ પ્લેટફોર્મ.",
+                livePrices: "લાઇવ ભાવ",
+                diseasePrediction: "રોગ અંદાજ",
+                cropTypes: "પાકના પ્રકાર",
+                transportation: "પરિવહન",
+                buyers: "ખરીદદાર",
+                sellers: "વેચાણકાર",
+                weather: "હવામાન",
+                vegetables: "શાકભાજી",
+                pulses: "દાળ",
+                fruits: "ફળ",
+                governmentSchemes: "સરકારી યોજનાઓ",
+                farmingTech: "કૃષિ ટેકનોલોજી",
+                fertilizerPesticide: "ખાતર અને કીટકનાશક",
+                agriculturalNews: "કૃષિ સમાચાર",
+                marketTrends: "બજાર ટ્રેન્ડ",
+                farmingEquipment: "કૃષિ સાધનો",
+                soilTesting: "માટી પરીક્ષણ",
+                irrigationSystems: "સિંચાઈ સિસ્ટમ",
+                buyerLogin: "ખરીદદાર લૉગિન (આવશ્યક)",
+                sellerSignup: "વેચાણકાર સાઇનઅપ (વૈકલ્પિક)",
+                languageLabel: "ભાષા: ",
+                home: "હોમ",
+                prices: "લાઇવ ભાવ",
+                disease: "રોગ અંદાજ",
+                crops: "પાકના પ્રકાર",
+                transportation: "પરિવહન",
+                buyers: "ખરીદદાર",
+                sellers: "વેચાણકાર",
+                weather: "હવામાન અંદાજ",
+                vegetables: "શાકભાજી",
+                pulses: "દાળ",
+                fruits: "ફળ",
+                governmentSchemes: "સરકારી યોજનાઓ",
+                farmingTech: "કૃષિ ટેકનોલોજી",
+                fertilizerPesticide: "ખાતર અને કીટકનાશક",
+                agriculturalNews: "કૃષિ સમાચાર",
+                marketTrends: "બજાર ટ્રેન્ડ",
+                farmingEquipment: "કૃષિ સાધનો",
+                soilTesting: "માટી પરીક્ષણ",
+                irrigationSystems: "સિંચાઈ સિસ્ટમ",
+                // Add more for Gujarati
+            },
+            kn: {
+                title: "ಕೃಷಿ ಸೇತುವೆ",
+                welcome: "ಕೃಷಿ ಸೇತುವೆಗೆ ಸ್ವಾಗತ",
+                welcomeDesc: "ರೈತರು, ಖರೀದಿದಾರರು ಮತ್ತು ಮಾರಾಟಗಾರರಿಗೆ ನಿಮ್ಮ ಸಮಗ್ರ ಕೃಷಿ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್.",
+                livePrices: "ಲೈವ್ ಬೆಲೆಗಳು",
+                diseasePrediction: "ರೋಗ ಅಂದಾಜು",
+                cropTypes: "ಬೆಳೆಯ ಪ್ರಕಾರಗಳು",
+                transportation: "ಸಾರಿಗೆ",
+                buyers: "ಖರೀದಿದಾರರು",
+                sellers: "ಮಾರಾಟಗಾರರು",
+                weather: "ಹವಾಮಾನ",
+                vegetables: "ತರಕಾರಿಗಳು",
+                pulses: "ಹುಳಿ",
+                fruits: "ಹಣ್ಣುಗಳು",
+                governmentSchemes: "ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು",
+                farmingTech: "ಕೃಷಿ ತಂತ್ರಜ್ಞಾನ",
+                fertilizerPesticide: "ಗೊಬ್ಬರ ಮತ್ತು ಕೀಟನಾಶಕಗಳು",
+                agriculturalNews: "ಕೃಷಿ ಸುದ್ದಿಗಳು",
+                marketTrends: "ಮಾರುಕಟ್ಟೆ ಟ್ರೆಂಡ್‌ಗಳು",
+                farmingEquipment: "ಕೃಷಿ ಸಾಧನಗಳು",
+                soilTesting: "ಮಣ್ಣಿನ ಪರೀಕ್ಷೆ",
+                irrigationSystems: "ನೀರಾವರಿ ವ್ಯವಸ್ಥೆಗಳು",
+                buyerLogin: "ಖರೀದಿದಾರ ಲಾಗಿನ್ (ಕಡ್ಡಾಯ)",
+                sellerSignup: "ಮಾರಾಟಗಾರ ಸೈನ್‌ಅಪ್ (ಐಚ್ಛಿಕ)",
+                languageLabel: "ಭಾಷೆ: ",
+                home: "ಮುಖ್ಯ",
+                prices: "ಲೈವ್ ಬೆಲೆಗಳು",
+                disease: "ರೋಗ ಅಂದಾಜು",
+                crops: "ಬೆಳೆಯ ಪ್ರಕಾರಗಳು",
+                transportation: "ಸಾರಿಗೆ",
+                buyers: "ಖರೀದಿದಾರರು",
+                sellers: "ಮಾರಾಟಗಾರರು",
+                weather: "ಹವಾಮಾನ ಅಂದಾಜು",
+                vegetables: "ತರಕಾರಿಗಳು",
+                pulses: "ಹುಳಿ",
+                fruits: "ಹಣ್ಣುಗಳು",
+                governmentSchemes: "ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು",
+                farmingTech: "ಕೃಷಿ ತಂತ್ರಜ್ಞಾನ",
+                fertilizerPesticide: "ಗೊಬ್ಬರ ಮತ್ತು ಕೀಟನಾಶಕಗಳು",
+                agriculturalNews: "ಕೃಷಿ ಸುದ್ದಿಗಳು",
+                marketTrends: "ಮಾರುಕಟ್ಟೆ ಟ್ರೆಂಡ್‌ಗಳು",
+                farmingEquipment: "ಕೃಷಿ ಸಾಧನಗಳು",
+                soilTesting: "ಮಣ್ಣಿನ ಪರೀಕ್ಷೆ",
+                irrigationSystems: "ನೀರಾವರಿ ವ್ಯವಸ್ಥೆಗಳು",
+                // Add more for Kannada
+            },
+            or: {
+                title: "କୃଷି ସେତୁ",
+                welcome: "କୃଷି ସେତୁକୁ ସ୍ଵାଗତ",
+                welcomeDesc: "ଚାଷୀ, କ୍ରେତା ଏବଂ ବିକ୍ରେତାଙ୍କ ପାଇଁ ଆପଣଙ୍କର ବ୍ୟାପକ କୃଷି ପ୍ଲାଟଫର୍ମ।",
+                livePrices: "ଲାଇଭ୍ ମୂଲ୍ୟ",
+                diseasePrediction: "ରୋଗ ଅନୁମାନ",
+                cropTypes: "ଫସଲ ପ୍ରକାର",
+                transportation: "ପରିବହନ",
+                buyers: "କ୍ରେତା",
+                sellers: "ବିକ୍ରେତା",
+                weather: "ପାଣିପାଗ",
+                vegetables: "ଶାକସବଜି",
+                pulses: "ଡାଲ",
+                fruits: "ଫଳ",
+                governmentSchemes: "ସରକାରୀ ଯୋଜନା",
+                farmingTech: "କୃଷି ପ୍ରଯୁକ୍ତି",
+                fertilizerPesticide: "ଖାଦ୍ୟ ଏବଂ କୀଟନାଶକ",
+                agriculturalNews: "କୃଷି ଖବର",
+                marketTrends: "ବଜାର ଟ୍ରେଣ୍ଡ",
+                farmingEquipment: "କୃଷି ଉପକରଣ",
+                soilTesting: "ମାଟି ପରୀକ୍ଷଣ",
+                irrigationSystems: "ସେଚ ସିଷ୍ଟମ୍",
+                buyerLogin: "କ୍ରେତା ଲଗଇନ୍ (ବାଧ୍ୟତାମୂଳକ)",
+                sellerSignup: "ବିକ୍ରେତା ସାଇନଅପ୍ (ବୈକଲ୍ପିକ)",
+                languageLabel: "ଭାଷା: ",
+                home: "ଘର",
+                prices: "ଲାଇଭ୍ ମୂଲ୍ୟ",
+                disease: "ରୋଗ ଅନୁମାନ",
+                crops: "ଫସଲ ପ୍ରକାର",
+                transportation: "ପରିବହନ",
+                buyers: "କ୍ରେତା",
+                sellers: "ବିକ୍ରେତା",
+                weather: "ପାଣିପାଗ ଅନୁମାନ",
+                vegetables: "ଶାକସବଜି",
+                pulses: "ଡାଲ",
+                fruits: "ଫଳ",
+                governmentSchemes: "ସରକାରୀ ଯୋଜନା",
+                farmingTech: "କୃଷି ପ୍ରଯୁକ୍ତି",
+                fertilizerPesticide: "ଖାଦ୍ୟ ଏବଂ କୀଟନାଶକ",
+                agriculturalNews: "କୃଷି ଖବର",
+                marketTrends: "ବଜାର ଟ୍ରେଣ୍ଡ",
+                farmingEquipment: "କୃଷି ଉପକରଣ",
+                soilTesting: "ମାଟି ପରୀକ୍ଷଣ",
+                irrigationSystems: "ସେଚ ସିଷ୍ଟମ୍",
+                // Add more for Odia
+            },
+            pa: {
+                title: "ਕ੍ਰਿਸ਼ੀ ਸੇਤੂ",
+                welcome: "ਕ੍ਰਿਸ਼ੀ ਸੇਤੂ ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ",
+                welcomeDesc: "ਕਿਸਾਨਾਂ, ਖਰੀਦਦਾਰਾਂ ਅਤੇ ਵਿਕਰੇਤਾਵਾਂ ਲਈ ਤੁਹਾਡਾ ਵਿਆਪਕ ਕ੍ਰਿਸ਼ੀ ਪਲੇਟਫਾਰਮ।",
+                livePrices: "ਲਾਈਵ ਕੀਮਤਾਂ",
+                diseasePrediction: "ਰੋਗ ਅਨੁਮਾਨ",
+                cropTypes: "ਫਸਲ ਦੀਆਂ ਕਿਸਮਾਂ",
+</body>
+</html>
