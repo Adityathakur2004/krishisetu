@@ -81,4 +81,40 @@ Required `.env` variables in backend:
 - API base URL should match backend port (default: `http://localhost:5001`)
 - Cross-origin requests handled by CORS middleware
 
+## Go-Live Checklist
+Before deploying to production, ensure:
+
+### Backend
+- [ ] MongoDB connection string updated for production database
+- [ ] Environment variables configured (MONGODB_URI, PORT, etc.)
+- [ ] CORS origins configured for production domain
+- [ ] All API endpoints tested and returning data
+- [ ] Error handling implemented for all routes
+- [ ] Database indexes optimized for performance
+- [ ] File upload limits configured appropriately
+
+### Frontend
+- [ ] Build process optimized (`npm run build`)
+- [ ] API base URL updated for production backend
+- [ ] All routes properly configured in React Router
+- [ ] i18n translations complete for all languages
+- [ ] Responsive design tested across devices
+- [ ] Performance optimized (lazy loading, code splitting)
+- [ ] Browser compatibility verified
+
+### Deployment
+- [ ] Backend deployed to production server (Heroku, AWS, etc.)
+- [ ] Frontend deployed to static hosting (Netlify, Vercel, etc.)
+- [ ] Domain configured and SSL certificates installed
+- [ ] Environment variables set in production
+- [ ] Database backup and migration scripts ready
+- [ ] Monitoring and logging configured
+
+### Testing
+- [ ] End-to-end testing completed
+- [ ] Cross-browser testing done
+- [ ] Mobile responsiveness verified
+- [ ] API integration tested in production environment
+- [ ] Performance benchmarks met
+
 Remember to maintain consistent error handling patterns and follow the established module structure when adding new features.
