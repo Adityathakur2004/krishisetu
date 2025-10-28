@@ -22,7 +22,7 @@ const IrrigationSystems = () => {
 
   const fetchSystems = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/irrigation-systems');
+      const response = await axios.get('/api/irrigation-systems');
       setSystems(response.data);
       setLoading(false);
     } catch (error) {

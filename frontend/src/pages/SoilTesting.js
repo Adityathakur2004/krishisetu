@@ -36,7 +36,7 @@ const SoilTesting = () => {
 
   const fetchTests = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/soil-testing');
+      const response = await axios.get('/api/soil-testing');
       setTests(response.data);
       setLoading(false);
     } catch (error) {
@@ -144,7 +144,7 @@ const SoilTesting = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5001/api/soil-testing', formData);
+      await axios.post('/api/soil-testing', formData);
       alert('Soil test request submitted successfully!');
       setShowForm(false);
       setFormData({

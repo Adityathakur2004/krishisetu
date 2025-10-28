@@ -21,7 +21,7 @@ const FarmingEquipment = () => {
 
   const fetchEquipment = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/farming-equipment');
+      const response = await axios.get('/api/farming-equipment');
       setEquipment(response.data);
       setLoading(false);
     } catch (error) {
